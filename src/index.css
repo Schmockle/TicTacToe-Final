@@ -61,10 +61,9 @@ body {
   color: #ff3b30; /* Rød for O */
 }
 
-/* ✅ Vinnerboks */
 .square.winner {
   background: #34c759;
-  color: white !important;
+  color: white !important; /* Sørger for at fargen alltid er hvit */
   animation: pulse 1s ease infinite;
 }
 
@@ -88,7 +87,7 @@ button {
   background: #007aff;
   border: none;
   border-radius: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -105,7 +104,7 @@ button:active {
 /* Reset Game button */
 .reset-button {
   background-color: #ff3b30;
-  color: white;
+  color: rgb(255, 0, 0);
   margin-top: 20px;
 }
 
