@@ -61,10 +61,9 @@ body {
   color: #ff3b30; /* Rød for O */
 }
 
-/* ✅ Vinnerboks */
 .square.winner {
   background: #34c759;
-  color: white !important;
+  color: white !important; /* Sørger for at fargen alltid er hvit */
   animation: pulse 1s ease infinite;
 }
 
