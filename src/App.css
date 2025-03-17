@@ -1,0 +1,5 @@
+.game { display: flex; }
+.game-board { margin-right: 20px; }
+.status { margin-bottom: 10px; }
+.square { width: 34px; height: 34px; font-size: 24px; }
+.board-row { display: flex; }
