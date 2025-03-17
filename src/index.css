@@ -88,7 +88,7 @@ button {
   background: #007aff;
   border: none;
   border-radius: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -105,7 +105,7 @@ button:active {
 /* Reset Game button */
 .reset-button {
   background-color: #ff3b30;
-  color: white;
+  color: rgb(255, 0, 0);
   margin-top: 20px;
 }
 
