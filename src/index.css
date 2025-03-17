@@ -112,12 +112,3 @@ button:active {
 .reset-button:hover {
   background-color: #e02823;
 }
-
-/* Farger på symbolene */
-.square.x {
-  color: #007aff; /* Blå for X */
-}
-
-.square.o {
-  color: #ff3b30; /* Rød for O */
-}
