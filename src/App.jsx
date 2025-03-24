@@ -102,3 +102,20 @@ function calculateWinner(squares) {
   }
   return null;
 }
+
+/* Vinner-animasjon */
+.square.winner {
+  background-color: #90ee90;
+  animation: winner-glow 1s ease-in-out infinite alternate;
+  border: 2px solid #32cd32;
+  color: #000;
+}
+
+@keyframes winner-glow {
+  from {
+    box-shadow: 0 0 10px #32cd32;
+  }
+  to {
+    box-shadow: 0 0 20px #32cd32, 0 0 10px #32cd32 inset;
+  }
+}
