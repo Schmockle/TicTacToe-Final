@@ -1,21 +1,28 @@
-.game { display: flex; }
-.game-board { margin-right: 20px; }
-.status { margin-bottom: 10px; }
-.square { width: 34px; height: 34px; font-size: 24px; }
-.board-row { display: flex; }
-
-.square.winner {
-  background-color: #90ee90;
-  animation: winner-glow 1s ease-in-out infinite alternate;
-  border: 2px solid #32cd32;
-  color: #000;
+.square {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  background-color: lightgray;
+  border: 1px solid #999;
 }
 
-@keyframes winner-glow {
-  from {
-    box-shadow: 0 0 10px #32cd32;
+.square.highlight {
+  background-color: yellow;
+  animation: highlight 1s ease-in-out;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: yellow;
   }
-  to {
-    box-shadow: 0 0 20px #32cd32, 0 0 10px #32cd32 inset;
+  50% {
+    background-color: lightgreen;
   }
+  100% {
+    background-color: yellow;
+  }
+}
+
+.board-row {
+  display: flex;
 }

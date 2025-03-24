@@ -1,38 +1,38 @@
 import { useState } from 'react';
-import './App.css'; // sørg for at CSS er importert
 
-function Square({ value, onSquareClick, isWinner }) {
+function Square({ value, onSquareClick, highlight }) {
   return (
-    <button className={`square ${isWinner ? 'winner' : ''}`} onClick={onSquareClick}>
+    <button className={square ${highlight ? 'highlight' : ''}} onClick={onSquareClick}>
       {value}
     </button>
   );
 }
 
 function Board({ xIsNext, squares, onPlay }) {
-  function handleClick(i) {
-    if (calculateWinner(squares) || squares[i]) return;
+  const winner = calculateWinner(squares);
+  const winningLine = calculateWinningLine(squares);
 
+  function handleClick(i) {
+    if (winner || squares[i]) {
+      return;
+    }
     const nextSquares = squares.slice();
     nextSquares[i] = xIsNext ? 'X' : 'O';
     onPlay(nextSquares);
   }
 
-  const winner = calculateWinner(squares);
-  let status = winner ? `Winner: ${winner.player}` : `Next player: ${xIsNext ? 'X' : 'O'}`;
-
-  const winningSquares = winner ? winner.line : [];
+  const status = winner ? Winner: ${winner} : Next player: ${xIsNext ? 'X' : 'O'};
 
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board">
-        {squares.map((val, i) => (
-          <Square
-            key={i}
-            value={val}
-            onSquareClick={() => handleClick(i)}
-            isWinner={winningSquares.includes(i)}
+      <div className="board-row">
+        {squares.map((square, i) => (
+          <Square 
+            key={i} 
+            value={square} 
+            onSquareClick={() => handleClick(i)} 
+            highlight={winningLine && winningLine.includes(i)} 
           />
         ))}
       </div>
@@ -52,8 +52,8 @@ export default function Game() {
     setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(move) {
-    setCurrentMove(move);
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
   }
 
   function resetGame() {
@@ -62,7 +62,7 @@ export default function Game() {
   }
 
   const moves = history.map((squares, move) => {
-    const description = move ? `Go to move #${move}` : 'Go to game start';
+    const description = move > 0 ? Go to move #${move} : 'Go to game start';
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>{description}</button>
@@ -77,7 +77,7 @@ export default function Game() {
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
-        <button className="reset-btn" onClick={resetGame}>Reset Game</button>
+        <button onClick={resetGame}>Reset Game</button>
       </div>
     </div>
   );
@@ -94,28 +94,16 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let line of lines) {
-    const [a, b, c] = line;
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return { player: squares[a], line };
+      return { winner: squares[a], line: lines[i] };
     }
   }
   return null;
 }
 
-/* Vinner-animasjon */
-.square.winner {
-  background-color: #90ee90;
-  animation: winner-glow 1s ease-in-out infinite alternate;
-  border: 2px solid #32cd32;
-  color: #000;
-}
-
-@keyframes winner-glow {
-  from {
-    box-shadow: 0 0 10px #32cd32;
-  }
-  to {
-    box-shadow: 0 0 20px #32cd32, 0 0 10px #32cd32 inset;
-  }
+function calculateWinningLine(squares) {
+  const result = calculateWinner(squares);
+  return result ? result.line : null;
 }
